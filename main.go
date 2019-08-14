@@ -1,19 +1,36 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
-	cmd "projectapi/cmd"
-
-	"github.com/gorilla/mux"
+	dbs "projectapi/db"
+	"projectapi/delivery"
+	"projectapi/repository/postgres"
+	"projectapi/repository/restapi"
+	"projectapi/usecase"
 )
 
 func main() {
-	router := mux.NewRouter()
-	router.HandleFunc("/api/garages", cmd.GaragesHandler).Methods("GET")
-	router.HandleFunc("/api/getcarposition/{idcar}", cmd.GetCarPositionHandler).Methods("GET")
-	router.HandleFunc("/api/getgaragedetail/{idgarage}", cmd.GetGarageDetail).Methods("GET")
+	conn := dbs.Conn()
+	httpDelivery := initAll(conn)
+	router := httpDelivery.CreateRouter()
 	fmt.Println("Server started in http://localhost:4000")
 	log.Fatal(http.ListenAndServe(":4000", router))
+}
+
+func initAll(db *sql.DB) (httpDelivery delivery.Delivery) {
+	carData, err := restapi.New()
+	if err != nil {
+		fmt.Println("handle Error")
+	}
+	postgresRepo, errDb := postgres.New(db)
+	if errDb != nil {
+		fmt.Println("handle Error")
+	}
+	postgresRepo.PrepareQuery()
+	Service := usecase.New(postgresRepo, carData)
+	httpDelivery = delivery.New(Service)
+	return
 }
