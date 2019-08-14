@@ -7,8 +7,8 @@ import (
 	"net/http"
 	dbs "projectapi/db"
 	"projectapi/delivery"
-	"projectapi/repository/postgres"
-	"projectapi/repository/restapi"
+	postgres "projectapi/repository/postgres/implementasi"
+	restapi "projectapi/repository/restapi/implementasi"
 	"projectapi/usecase"
 )
 

@@ -50,6 +50,16 @@ func TestGarageServiceStruct_GetGarageDetail(t *testing.T) {
 							},
 						}
 					},
+					GetCarPositionFunc: func(idcar string) []models.CarPosition {
+						return []models.CarPosition{
+							{
+								GarageName:   "E4 Garage",
+								Longtitude:   "1.232",
+								Latitude:     "0.12",
+								PositionName: "Slot 1",
+							},
+						}
+					},
 				},
 				Cardata: &restapirepo.RepoCARMock{
 					GetGarageStatusFunc: func(IDgarage int) map[int]models.GarageStatus {
