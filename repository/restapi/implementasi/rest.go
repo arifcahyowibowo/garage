@@ -12,7 +12,7 @@ import (
 func (R *RestAPI) GetGarageStatus(IDgarage int) map[int]models.GarageStatus {
 	var garageStatusArray []models.GarageStatus
 	garageStatusMap := make(map[int]models.GarageStatus)
-	url := fmt.Sprintf("http://%s/?%s=%d", R.baseURL, R.endPoint, IDgarage)
+	url := fmt.Sprintf("%s?%s=%d", R.baseURL, R.endPoint, IDgarage)
 	res, err := http.Get(url)
 	if err != nil {
 		return nil

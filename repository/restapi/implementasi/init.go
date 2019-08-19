@@ -9,7 +9,7 @@ type RestAPI struct {
 // New it Open connection to server
 func New() (RepoRest *RestAPI, err error) {
 	return &RestAPI{
-		baseURL:  "http://172.31.4.92:8977/",
+		baseURL:  "172.31.4.92:8977/",
 		endPoint: "getgeragestatus",
 	}, nil
 }

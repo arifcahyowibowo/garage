@@ -61,8 +61,8 @@ func TestDelivery_GetCarPositionHandler(t *testing.T) {
 							return []models.CarPosition{
 								{
 									GarageName:   "E4 Garage",
-									Longtitude:   "1.232",
 									Latitude:     "0.12",
+									Longtitude:   "1.232",
 									PositionName: "Slot 1",
 								},
 							}
@@ -87,7 +87,7 @@ func TestDelivery_GetCarPositionHandler(t *testing.T) {
 				},
 			},
 			wantCode: 200,
-			wantData: `[{"GarageName":"E4 Garage","Longtitude":"1.232","Latitude":"0.12","PositionName":"Slot 1"}]`,
+			wantData: `[{"GarageName":"E4 Garage","Latitude":"0.12","Longtitude":"1.232","PositionName":"Slot 1"}]`,
 		},
 
 		// TODO: Add test cases.

@@ -19,8 +19,8 @@ type Position struct {
 // CarPosition models for result in getGarageDetail
 type CarPosition struct {
 	GarageName   string `json:"GarageName"`
-	Longtitude   string `json:"Longtitude"`
 	Latitude     string `json:"Latitude"`
+	Longtitude   string `json:"Longtitude"`
 	PositionName string `json:"PositionName"`
 }
 

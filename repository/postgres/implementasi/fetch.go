@@ -10,6 +10,7 @@ func (repo *Repo) GetGaragesByID(garageID int) models.Garages {
 	var garageData models.Garages
 	rows := repo.prepGetGarageByID.QueryRow(garageID)
 	rows.Scan(&garageData.IDGarage, &garageData.GarageNm, &garageData.Latitude, &garageData.Longtitude)
+
 	return garageData
 }
 
@@ -22,9 +23,18 @@ func (repo *Repo) GetPositionByGarageID(garageID int) []models.Position {
 	}
 	defer rows.Close()
 	for rows.Next() {
-		var each = models.Position{}
-		rows.Scan(&each.IDPosition, &each.IDGarage, &each.IDCar, &each.PositionName)
-		positionData = append(positionData, each)
+
+		var IDPosition int
+		var IDGarage int
+		var IDCar int
+		var PositionName string
+		rows.Scan(&IDPosition, &IDGarage, &IDCar, &PositionName)
+
+		positionData = append(positionData, models.Position{IDPosition: IDPosition,
+			IDGarage:     IDGarage,
+			IDCar:        IDCar,
+			PositionName: PositionName})
+
 	}
 	return positionData
 }
