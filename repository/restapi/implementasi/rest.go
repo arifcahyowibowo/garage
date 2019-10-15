@@ -1,20 +1,19 @@
-package db
+package restapi
 
 import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	md "projectapi/models"
+	"projectapi/models"
 	"strconv"
 )
 
 // GetGarageStatus get garage status from other service
-func GetGarageStatus(IDgarage int) map[int]md.GarageStatus {
-	var garageStatusArray []md.GarageStatus
-	garageStatusMap := make(map[int]md.GarageStatus)
-	url := fmt.Sprintf("http://172.31.4.92:8980/getgeragestatus?id_Gerage=%d", IDgarage)
+func (R *RestAPI) GetGarageStatus(IDgarage int) map[int]models.GarageStatus {
+	var garageStatusArray []models.GarageStatus
+	garageStatusMap := make(map[int]models.GarageStatus)
+	url := fmt.Sprintf("%s?%s=%d", R.baseURL, R.endPoint, IDgarage)
 	res, err := http.Get(url)
-	defer res.Body.Close()
 	if err != nil {
 		return nil
 	}
