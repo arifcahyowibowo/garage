@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+	//mux router
 	router := mux.NewRouter()
 	router.HandleFunc("/api/garages", cmd.GaragesHandler).Methods("GET")
 	router.HandleFunc("/api/getcarposition/{idcar}", cmd.GetCarPositionHandler).Methods("GET")
