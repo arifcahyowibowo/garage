@@ -30,3 +30,10 @@ type GarageStatus struct {
 	CarName   string `json:"CarName"`
 	IDCar     string `json:"IdCar"`
 }
+
+// Car is Struct for car table
+type Car struct {
+	Name        string      `json:"name"`
+	CarPosition CarPosition `json:"CarPosition"`
+	Model       string      `json:"model"`
+}
